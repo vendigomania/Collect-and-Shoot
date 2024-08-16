@@ -4,7 +4,6 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using UnityEngine.Events;
-using YG;
 
 public class UpgradeHandler : MonoBehaviour
 {
@@ -54,65 +53,82 @@ public class UpgradeHandler : MonoBehaviour
 
     private bool _initialized = false;
 
-    private void Awake() {
+    private void Awake()
+    {
         TMP_Text[] texts = GetComponentsInChildren<TMP_Text>();
-        for (int i = 0; i < texts.Length; i++) {
-            if(_defaultFont != null) {
+        for (int i = 0; i < texts.Length; i++)
+        {
+            if (_defaultFont != null)
+            {
                 texts[i].font = _defaultFont;
             }
         }
         _finalPPKey = $"{_iterationsPlayerPrefsKey}{gameObject.name}";
         _currentImage = GetComponent<Image>();
         _currentBackground = _currentImage.sprite;
-        if (_updateTextsAtAwake) {
+        if (_updateTextsAtAwake)
+        {
             UpdateTexts();
         }
         MakeAllChildTextAsThin();
         OnUpgraded.AddListener(ShowAd);
     }
 
-    private void ShowAd() {
-        YG.YandexGame.FullscreenShow();
+    private void ShowAd()
+    {
     }
 
-    private void Start() {
+    private void Start()
+    {
 
     }
 
-    private void ApplyIterations() {
-        int iterations = GetIterations();
-        for (int i = 0; i < iterations; i++) {
+    private void ApplyIterations()
+    {
+        int iterations = 0;
+        for (int i = 0; i < iterations; i++)
+        {
             UpgradeWithoutSavingIterations();
         }
     }
 
-    private void MakeAllChildTextAsThin() {
+    private void MakeAllChildTextAsThin()
+    {
         TMP_Text[] _texts = GetComponentsInChildren<TMP_Text>();
-        for (int i = 0; i < _texts.Length; i++) {
+        for (int i = 0; i < _texts.Length; i++)
+        {
             _texts[i].fontStyle = FontStyles.UpperCase;
         }
     }
 
-    public void Upgrade() {
-        if (!IsAExceptional) {
+    public void Upgrade()
+    {
+        if (!IsAExceptional)
+        {
             _itemLevel++;
             ForceUpgrade(true);
         }
-        else {
+        else
+        {
             _itemLevel++;
             ForceUpgrade(true);
             ForceUpgrade(true);
         }
     }
 
-    private void Update() {
-        if (!_initialized) {
-            if (YandexGame.SDKEnabled) {
-                if (_applyIterationsAtAwake) {
+    private void Update()
+    {
+        if (!_initialized)
+        {
+            if (true)
+            {
+                if (_applyIterationsAtAwake)
+                {
                     ApplyIterations();
                 }
-                else {
-                    ResetIterations();
+                else
+                {
+                    
                 }
 
                 gameObject.SetActive(false);
@@ -125,21 +141,26 @@ public class UpgradeHandler : MonoBehaviour
         _levelText.text = TranslationLoader.IsCurrentLanguageRussian() ? $"УР.{_itemLevel}" : $"LVL.{_itemLevel}";
     }
 
-    public void UpgradeWithoutSavingIterations() {
-        if (!IsAExceptional) {
+    public void UpgradeWithoutSavingIterations()
+    {
+        if (!IsAExceptional)
+        {
             _itemLevel++;
             ForceUpgrade(false);
         }
-        else {
+        else
+        {
             _itemLevel++;
             ForceUpgrade(false);
             ForceUpgrade(false);
         }
     }
 
-    private void ForceUpgrade(bool saveIterations) {
+    private void ForceUpgrade(bool saveIterations)
+    {
         OnUpgraded?.Invoke();
-        if (_startValueIsZero && !_firstUpgradeApplied) {
+        if (_startValueIsZero && !_firstUpgradeApplied)
+        {
             UpgradeValue = _firstUpgradeValue;
             _firstUpgradeApplied = true;
         }
@@ -147,188 +168,86 @@ public class UpgradeHandler : MonoBehaviour
         OnLateUpgrade?.Invoke();
         UpdateTexts();
 
-        if (DontOfferAfterUpgrade) {
+        if (DontOfferAfterUpgrade)
+        {
             UpgradesRandomizer.Instance.ClearFromRow(gameObject);
             StartCoroutine(TurnOffAfterDelay());
         }
-
-        if(saveIterations && !_applyIterationsAtAwake) SaveIteration();
     }
 
-    private IEnumerator TurnOffAfterDelay() {
+    private IEnumerator TurnOffAfterDelay()
+    {
         yield return new WaitForSeconds(1f);
         {
             gameObject.SetActive(false);
         }
     }
 
-    public void SetExceptionalState(bool targetState) {
-        if (_canBeExceptional) {
+    public void SetExceptionalState(bool targetState)
+    {
+        if (_canBeExceptional)
+        {
             UpdateTexts();
             IsAExceptional = targetState;
             _currentImage.sprite = (IsAExceptional ? _exceptionalBackground : _currentBackground);
-            if (targetState) {
+            if (targetState)
+            {
                 _itemLevel += (_addedOneLevel ? 2 : 1);
                 _addedOneLevel = true;
                 _levelText.text = TranslationLoader.IsCurrentLanguageRussian() ? $"УР.{_itemLevel}" : $"LVL.{_itemLevel}";
-                if (_upgradeValueType != UpgradeValueType.Custom) {
+                if (_upgradeValueType != UpgradeValueType.Custom)
+                {
                     _upgradeValueText.text = (_upgradeValueType == UpgradeValueType.Number) ? $"+{UpgradeValue + (_valueImproveAfterUse * 2)}" : $"{UpgradeValue + (_valueImproveAfterUse * 2)}%";
 
-                    if (_startValueIsZero && !_firstUpgradeApplied) {
+                    if (_startValueIsZero && !_firstUpgradeApplied)
+                    {
                         _upgradeValueText.text = (_upgradeValueType == UpgradeValueType.Number) ? $"+{UpgradeValue + (_valueImproveAfterUse * 2)}" : $"{_firstUpgradeValue}%";
                     }
                 }
-                else {
+                else
+                {
                     _upgradeValueText.text = $"+{UpgradeValue + (_valueImproveAfterUse * 2)}{_customInfoAfterUpgradeText}";
                 }
             }
         }
     }
 
-    public void UpdateTexts() {
-        if (_startValueIsZero) {
+    public void UpdateTexts()
+    {
+        if (_startValueIsZero)
+        {
             UpdateTextsWithStartZeroValue();
             return;
         }
 
-        if(UpgradeValue > 0f) {
+        if (UpgradeValue > 0f)
+        {
             _levelText.text = TranslationLoader.IsCurrentLanguageRussian() ? $"УР.{_itemLevel}" : $"LVL.{_itemLevel}";
-            if (_upgradeValueType != UpgradeValueType.Custom) {
+            if (_upgradeValueType != UpgradeValueType.Custom)
+            {
                 _upgradeValueText.text = (_upgradeValueType == UpgradeValueType.Number) ? $"+{UpgradeValue}" : $"{UpgradeValue}%";
             }
-            else {
+            else
+            {
                 _upgradeValueText.text = $"+{UpgradeValue}{_customInfoAfterUpgradeText}";
             }
         }
     }
 
-    public void UpdateTextsWithStartZeroValue() {
-        if(UpgradeValue > 0f) {
+    public void UpdateTextsWithStartZeroValue()
+    {
+        if (UpgradeValue > 0f)
+        {
             _levelText.text = TranslationLoader.IsCurrentLanguageRussian() ? $"УР.{_itemLevel}" : $"LVL.{_itemLevel}";
-            if (_upgradeValueType != UpgradeValueType.Custom) {
+            if (_upgradeValueType != UpgradeValueType.Custom)
+            {
                 _upgradeValueText.text = (_upgradeValueType == UpgradeValueType.Number) ? $"+{UpgradeValue + _valueImproveAfterUse}" : $"{UpgradeValue + _valueImproveAfterUse}%";
             }
-            else {
+            else
+            {
                 _upgradeValueText.text = $"+{UpgradeValue + _valueImproveAfterUse}{_customInfoAfterUpgradeText}";
             }
         }
-    }
-
-    private void SaveIteration() {
-        switch (_finalPPKey) {
-            case nameof(YandexGame.savesData.IterationsBulletsCapacityUpgrade):
-                YandexGame.savesData.IterationsBulletsCapacityUpgrade++;
-                break;
-
-            case nameof(YandexGame.savesData.IterationsBurningHitUpgrade):
-                YandexGame.savesData.IterationsBurningHitUpgrade++;
-                break;
-
-            case nameof(YandexGame.savesData.IterationsCriticalHitUpgrade):
-                YandexGame.savesData.IterationsCriticalHitUpgrade++;
-                break;
-
-            case nameof(YandexGame.savesData.IterationsFreezingHitUpgrade):
-                YandexGame.savesData.IterationsFreezingHitUpgrade++;
-                break;
-
-            case nameof(YandexGame.savesData.IterationsHealthUpgrade):
-                YandexGame.savesData.IterationsHealthUpgrade++;
-                break;
-
-            case nameof(YandexGame.savesData.IterationsMagnetUpgrade):
-                YandexGame.savesData.IterationsMagnetUpgrade++;
-                break;
-
-            case nameof(YandexGame.savesData.IterationsMovementSpeedUpgrade):
-                YandexGame.savesData.IterationsMovementSpeedUpgrade++;
-                break;
-
-            case nameof(YandexGame.savesData.IterationsRegenerationUpgrade):
-                YandexGame.savesData.IterationsRegenerationUpgrade++;
-                break;
-
-            case nameof(YandexGame.savesData.IterationsShootingSpeedUpgrade):
-                YandexGame.savesData.IterationsShootingSpeedUpgrade++;
-                break;
-        }
-
-        YandexGame.SaveProgress();
-    }
-
-    public int GetIterations() {
-        switch (_finalPPKey) {
-            case nameof(YandexGame.savesData.IterationsBulletsCapacityUpgrade):
-                return YandexGame.savesData.IterationsBulletsCapacityUpgrade;
-
-            case nameof(YandexGame.savesData.IterationsBurningHitUpgrade):
-                return YandexGame.savesData.IterationsBurningHitUpgrade;
-
-            case nameof(YandexGame.savesData.IterationsCriticalHitUpgrade):
-                return YandexGame.savesData.IterationsCriticalHitUpgrade;
-
-            case nameof(YandexGame.savesData.IterationsFreezingHitUpgrade):
-                return YandexGame.savesData.IterationsFreezingHitUpgrade;
-
-            case nameof(YandexGame.savesData.IterationsHealthUpgrade):
-                return YandexGame.savesData.IterationsHealthUpgrade;
-
-            case nameof(YandexGame.savesData.IterationsMagnetUpgrade):
-                return YandexGame.savesData.IterationsMagnetUpgrade;
-
-            case nameof(YandexGame.savesData.IterationsMovementSpeedUpgrade):
-                return YandexGame.savesData.IterationsMovementSpeedUpgrade;
-
-            case nameof(YandexGame.savesData.IterationsRegenerationUpgrade):
-                return YandexGame.savesData.IterationsRegenerationUpgrade;
-
-            case nameof(YandexGame.savesData.IterationsShootingSpeedUpgrade):
-                return YandexGame.savesData.IterationsShootingSpeedUpgrade;
-        }
-
-        return 0;
-    }
-
-    private void ResetIterations() {
-        switch (_finalPPKey) {
-            case nameof(YandexGame.savesData.IterationsBulletsCapacityUpgrade):
-                YandexGame.savesData.IterationsBulletsCapacityUpgrade = 0;
-                break;
-
-            case nameof(YandexGame.savesData.IterationsBurningHitUpgrade):
-                YandexGame.savesData.IterationsBurningHitUpgrade = 0;
-                break;
-
-            case nameof(YandexGame.savesData.IterationsCriticalHitUpgrade):
-                YandexGame.savesData.IterationsCriticalHitUpgrade = 0;
-                break;
-
-            case nameof(YandexGame.savesData.IterationsFreezingHitUpgrade):
-                YandexGame.savesData.IterationsFreezingHitUpgrade = 0;
-                break;
-
-            case nameof(YandexGame.savesData.IterationsHealthUpgrade):
-                YandexGame.savesData.IterationsHealthUpgrade = 0;
-                break;
-
-            case nameof(YandexGame.savesData.IterationsMagnetUpgrade):
-                YandexGame.savesData.IterationsMagnetUpgrade = 0;
-                break;
-
-            case nameof(YandexGame.savesData.IterationsMovementSpeedUpgrade):
-                YandexGame.savesData.IterationsMovementSpeedUpgrade = 0;
-                break;
-
-            case nameof(YandexGame.savesData.IterationsRegenerationUpgrade):
-                YandexGame.savesData.IterationsRegenerationUpgrade = 0;
-                break;
-
-            case nameof(YandexGame.savesData.IterationsShootingSpeedUpgrade):
-                YandexGame.savesData.IterationsShootingSpeedUpgrade = 0;
-                break;
-        }
-
-        YandexGame.SaveProgress();
     }
 }
 public enum UpgradeValueType{ Number, Percentage, Custom }

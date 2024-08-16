@@ -1,7 +1,6 @@
 using UnityEngine.Events;
 using UnityEngine;
 using System.Collections;
-using YG;
 
 public class GameStartHandler : MonoBehaviour
 {
@@ -26,13 +25,6 @@ public class GameStartHandler : MonoBehaviour
         yield return new WaitForSeconds(_reviewDelay);
         {
             //AskForReview();
-        }
-    }
-
-    public void AskForReview() {
-        if (!AskedForAReview) {
-            YandexGame.ReviewShow(true);
-            AskedForAReview = true;
         }
     }
 

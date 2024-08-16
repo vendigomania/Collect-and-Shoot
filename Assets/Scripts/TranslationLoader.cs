@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using YG;
 using TMPro;
 
 public class TranslationLoader : MonoBehaviour
@@ -26,7 +25,7 @@ public class TranslationLoader : MonoBehaviour
     private string _ruCode = "ru";
 
     private void Update() {
-        if (YandexGame.SDKEnabled) {
+        if (true) {
             if (!_translationIsLoaded) {
                 LoadTranslation();
             }
@@ -38,5 +37,5 @@ public class TranslationLoader : MonoBehaviour
         //_translationIsLoaded = true;
     }
 
-    public static bool IsCurrentLanguageRussian() => (YandexGame.EnvironmentData.language.ToLower() == "ru");
+    public static bool IsCurrentLanguageRussian() => (Application.systemLanguage == SystemLanguage.Russian);
 }

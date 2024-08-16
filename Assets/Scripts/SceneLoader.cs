@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using YG;
 using UnityEditor;
 
 public class SceneLoader : MonoBehaviour
@@ -27,8 +26,8 @@ public class SceneLoader : MonoBehaviour
     }
 
     public void SetTargetSceneAsNextLevel(int targetIndex) {
-        YandexGame.savesData.lastSavedPPKey = targetIndex;
-        YandexGame.SaveProgress();
+        PlayerPrefs.SetInt("Checkpoint", targetIndex);
+        PlayerPrefs.Save(); 
     }
 
     private IEnumerator DelayedLoading(float delay) {

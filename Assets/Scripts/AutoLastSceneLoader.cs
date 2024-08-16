@@ -1,11 +1,8 @@
 using UnityEngine.SceneManagement;
 using UnityEngine;
-using YG;
 
 public class AutoLastSceneLoader : MonoBehaviour
 {
-    private string _lastSavedScenePPKey = "LastSavedScene";
-
     private bool _isTurned = false;
 
     private void Start() {
@@ -13,11 +10,10 @@ public class AutoLastSceneLoader : MonoBehaviour
     }
 
     private void TryToLoadGame() {
-        if (!_isTurned) {
-            if (YandexGame.SDKEnabled) {
-                LoadLastSavedScene();
-                _isTurned = true;
-            }
+        if (!_isTurned)
+        {
+            LoadLastSavedScene();
+            _isTurned = true;
         }
     }
 
@@ -26,6 +22,6 @@ public class AutoLastSceneLoader : MonoBehaviour
     }
 
     public void LoadLastSavedScene() {
-        SceneManager.LoadScene(YandexGame.savesData.isCheckPointSaved ? YandexGame.savesData.lastRegisteredCheckPointIndex : YandexGame.savesData.lastSavedPPKey);
+        SceneManager.LoadScene(PlayerPrefs.GetInt("Checkpoint", 0));
     }
 }

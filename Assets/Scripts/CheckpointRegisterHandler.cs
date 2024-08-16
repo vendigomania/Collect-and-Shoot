@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using YG;
 
 public class CheckpointRegisterHandler : MonoBehaviour
 {
@@ -19,15 +18,14 @@ public class CheckpointRegisterHandler : MonoBehaviour
 
     private void Update() {
         if (ClearProgress) {
-            YandexGame.ResetSaveProgress();
+            PlayerPrefs.DeleteKey("Checkpoint");
         }
     }
 
     public void RegisterCheckpoint(int checkPointIndex) {
         CheckpointRegistered = true;
-        YandexGame.savesData.isCheckPointSaved = true;
-        YandexGame.savesData.lastRegisteredCheckPointIndex = checkPointIndex;
-        YandexGame.SaveProgress();
+        PlayerPrefs.SetInt("Checkpoint", checkPointIndex);
+        PlayerPrefs.Save();
     }
 
     public void LoadSceneAfterDeath() {

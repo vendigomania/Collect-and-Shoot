@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
-using YG;
 
 public class BridgeChangingLocationZoneHandler : MonoBehaviour
 {
@@ -15,8 +14,6 @@ public class BridgeChangingLocationZoneHandler : MonoBehaviour
     private void OnTriggerEnter(Collider other) {
         if(other.tag == _playerTag) {
             if (!_hasPlayerEnteredTheZone) {
-                YandexGame.savesData.isCheckPointSaved = false;
-                YandexGame.SaveProgress();
                 OnPlayerEnteredZone?.Invoke();
                 _hasPlayerEnteredTheZone = true;
             }
