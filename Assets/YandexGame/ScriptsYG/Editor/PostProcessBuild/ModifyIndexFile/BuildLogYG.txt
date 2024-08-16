@@ -1,0 +1,2 @@
+Build path: C:/Users/Timur/Downloads/CollectBullets3D-Yandex
+Build number: 64
