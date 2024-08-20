@@ -22,6 +22,6 @@ public class AutoLastSceneLoader : MonoBehaviour
     }
 
     public void LoadLastSavedScene() {
-        SceneManager.LoadScene(PlayerPrefs.GetInt("Checkpoint", 0));
+        SceneManager.LoadScene(PlayerPrefs.GetInt("Checkpoint", 1));
     }
 }
