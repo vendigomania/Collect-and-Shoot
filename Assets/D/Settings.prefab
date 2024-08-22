@@ -87,6 +87,7 @@ GameObject:
   - component: {fileID: 3709566514744300381}
   - component: {fileID: 6496303863963757191}
   - component: {fileID: 8045213158477053548}
+  - component: {fileID: 4434249014733721269}
   m_Layer: 5
   m_Name: Music - Text (TMP)
   m_TagString: Untagged
@@ -175,7 +176,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 200
-  m_fontStyle: 0
+  m_fontStyle: 16
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -211,6 +212,21 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &4434249014733721269
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1806423678281119606}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2275334535d79b34fbf8700192a3fd7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _russianTranslation: 
+  _englishTranslation: Music
+  _textComponent: {fileID: 0}
 --- !u!1 &2767559195840280992
 GameObject:
   m_ObjectHideFlags: 0
@@ -366,6 +382,7 @@ GameObject:
   - component: {fileID: 5909102346313113420}
   - component: {fileID: 2061308570123854159}
   - component: {fileID: 9124512429950678737}
+  - component: {fileID: 9082363135835285453}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -454,7 +471,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 200
-  m_fontStyle: 0
+  m_fontStyle: 16
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -490,6 +507,21 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &9082363135835285453
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3130077838221184424}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2275334535d79b34fbf8700192a3fd7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _russianTranslation: 
+  _englishTranslation: Options
+  _textComponent: {fileID: 0}
 --- !u!1 &4358099115190687857
 GameObject:
   m_ObjectHideFlags: 0
@@ -1507,6 +1539,7 @@ GameObject:
   - component: {fileID: 6688847746932568640}
   - component: {fileID: 2766032368603532457}
   - component: {fileID: 9202837540316934719}
+  - component: {fileID: 2211323149797773412}
   m_Layer: 5
   m_Name: Music - Text (TMP)
   m_TagString: Untagged
@@ -1595,7 +1628,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 200
-  m_fontStyle: 0
+  m_fontStyle: 16
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -1631,6 +1664,21 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &2211323149797773412
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8560503890043480301}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2275334535d79b34fbf8700192a3fd7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _russianTranslation: 
+  _englishTranslation: Sound
+  _textComponent: {fileID: 0}
 --- !u!1 &9140417573567370365
 GameObject:
   m_ObjectHideFlags: 0
