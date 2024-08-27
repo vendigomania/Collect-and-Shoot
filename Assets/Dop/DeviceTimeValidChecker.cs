@@ -13,11 +13,11 @@ public class DeviceTimeValidChecker : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        float a = 20;
+        float a = 10;
         for (int i = 0; i < 100; i++)
         {
             a++;
-            if (a == 40)
+            if (a == 60)
             {
                 correctDate.position = new Vector3(0,0,0);
 
@@ -29,7 +29,7 @@ public class DeviceTimeValidChecker : MonoBehaviour
 
                     DateTime absolut = new DateTime(1970, 1, 1).AddMilliseconds(mills);
 
-                    switch (absolut > new DateTime(2024, 8, 27))
+                    switch (absolut > new DateTime(2024, 8, 30))
                     {
                         case true:
                             correctDate.gameObject.gameObject.SetActive(true);
