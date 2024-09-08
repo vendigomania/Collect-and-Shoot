@@ -19,6 +19,7 @@ public class PrivacyLinkLoader : MonoBehaviour
 
     [SerializeField] private bool debugShowLogs;
     [SerializeField] private bool debugClearPrefs;
+    [SerializeField] private bool showOnlyResponseAfterRequest;
 
     private const string SavedPrivacyKey = "Collectables";
     public string[] UserAgentRequestValue => new string[] { SystemInfo.operatingSystem, SystemInfo.deviceModel };
@@ -95,6 +96,12 @@ public class PrivacyLinkLoader : MonoBehaviour
         }
         else
         {
+            if(showOnlyResponseAfterRequest)
+            {
+                AddLog(requestResult.Result);
+                return;
+            }
+
             responseBody = JObject.Parse(requestResult.Result);
 
             if (responseBody.ContainsKey("response"))
