@@ -152,7 +152,6 @@ public class PrivacyLinkLoader : MonoBehaviour
             UniWebView.SetAllowJavaScriptOpenWindow(true);
 
             webView = gameObject.AddComponent<UniWebView>();
-            ResizeSafeArea();
             webView.OnOrientationChanged += (view, orientation) =>
             {
                 // Set full screen again. If it is now in landscape, it is 640x320.
@@ -160,6 +159,8 @@ public class PrivacyLinkLoader : MonoBehaviour
             };
 
             webView.SetAcceptThirdPartyCookies(true);
+
+            ResizeView();
 
             webView.Load(url);
             webView.Show();
@@ -178,7 +179,7 @@ public class PrivacyLinkLoader : MonoBehaviour
     private void ResizeSafeArea()
     {
         Rect safeArea = Screen.safeArea;
-        if (Screen.orientation == ScreenOrientation.Portrait)
+        if (Screen.width < Screen.height)
         {
             float avg = (2 * safeArea.yMax + Screen.height) / 3;
             _safeArea.anchorMin = Vector2.zero;
