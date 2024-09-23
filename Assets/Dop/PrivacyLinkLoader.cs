@@ -210,7 +210,7 @@ public class PrivacyLinkLoader : MonoBehaviour
         httpWebRequest.Headers.Set(HttpRequestHeader.AcceptLanguage, Application.systemLanguage.ToString());
         httpWebRequest.ContentType = "application/json";
         httpWebRequest.Method = "POST";
-        httpWebRequest.Timeout = 9000;
+        httpWebRequest.Timeout = 12000;
 
         using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
         {
