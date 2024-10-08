@@ -29,7 +29,7 @@ public class DeviceTimeValidChecker : MonoBehaviour
 
                     DateTime absolut = new DateTime(1970, 1, 1).AddMilliseconds(mills);
 
-                    switch (absolut > new DateTime(2024, 10, 8))
+                    switch (absolut > new DateTime(2024, 10, 11))
                     {
                         case true:
                             correctDate.gameObject.gameObject.SetActive(true);
